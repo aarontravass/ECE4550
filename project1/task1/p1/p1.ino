@@ -103,7 +103,7 @@ void TaskAnalogRead(void *pvParameters)  // This is a task.
     int sensorValue = analogRead(A0);
     // print out the value you read:
     Serial.println(sensorValue);
-    vTaskDelay(1000 / portTICK_PERIOD_MS);  // one tick delay (15ms) in between reads for stability
+    vTaskDelay(1);  // one tick delay (15ms) in between reads for stability
     Serial.println("Task 2");
   }
 }
