@@ -13,9 +13,11 @@ void printer(vector<int> a)
 
 int main()
 {
-    vector<int> c = {3,3,5};
-    vector<int> t = {7,12,20};
-    vector<int> w(c.size(),0), r(c.size(),0);
+    vector<int> c = {20, 10, 5};
+    vector<int> t = {50, 40, 20};
+    vector<int> d = {40, 30, 15};
+    vector<int> w(c.size(),0);
+    bool hasDeadline = d.size();
     w[0] =c[0];
     for(int i=1; i<c.size(); i++)
     {
@@ -26,15 +28,20 @@ int main()
             current[1] = c[i];
             for(int j=0; j<i; j++)
             {
-                current[1]+=(c[i-1]*ceil((float)current[0]/(float)t[j]));
+                current[1]+=(c[i]*ceil((float)current[0]/(float)t[j]));
             }
             if(current[0]==current[1])
             {
                 w[i]=current[0];
                 break;
             }
-            if(current[1]>t[i])
+            if(current[1]>d[i] && hasDeadline)
             {
+                w[i] = -1;
+                break;
+            }
+            if(current[1]>t[i] && !hasDeadline){
+                w[i] = -1;
                 break;
             }
             current[0]=current[1];
