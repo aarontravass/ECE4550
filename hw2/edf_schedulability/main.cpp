@@ -33,12 +33,12 @@ long long lcm(int a, int b)
 
 int main()
 {
-    vector<int> c = {2, 2, 3};
-    vector<int> t = {6, 8, 9};
-    vector<int> d = {4, 5, 7};
+    vector<int> c = {20, 10, 5};
+    vector<int> t = {50, 40, 20};
+    vector<int> d = {40, 30, 15};
     set<int> l;
-    int h = lcm(t[0],t[1]);
-    for(int i=2;i<t.size();i++){
+    int h = t[0];
+    for(int i=1;i<t.size();i++){
         h=lcm(h,t[i]);
     }
     for(int i=0;i<c.size();i++){
@@ -56,8 +56,11 @@ int main()
         }
         k++;
     }
-    printer(w);
-    set_printer(l);
+    k=0;
+    for(auto itr=l.begin();itr!=l.end();itr++){
+        cout<<*itr<<" "<<w[k]<<" : "<<(w[k]<=*itr)<<endl;
+        k++;
+    }
 
 
     return 0;
