@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void printer(vector<int> a)
+void printer(vector<auto> a)
 {
     for(int itr=0; itr<a.size(); itr++)
     {
@@ -13,10 +13,11 @@ void printer(vector<int> a)
 
 int main()
 {
-    vector<int> c = {20, 10, 5};
-    vector<int> t = {50, 40, 20};
-    vector<int> d = {40, 30, 15};
+    vector<int> c = {2, 2, 4};
+    vector<int> t = {8, 6, 12};
+    vector<int> d = {4, 5, 8};
     vector<int> w(c.size(),0);
+    vector<bool> valid(c.size(),true);
     bool hasDeadline = d.size();
     w[0] =c[0];
     for(int i=1; i<c.size(); i++)
@@ -28,25 +29,31 @@ int main()
             current[1] = c[i];
             for(int j=0; j<i; j++)
             {
-                current[1]+=(c[i]*ceil((float)current[0]/(float)t[j]));
+                current[1]+=(c[j]*ceil((float)current[0]/(float)t[j]));
             }
+            cout<<current[1]<<" ";
             if(current[0]==current[1])
             {
                 w[i]=current[0];
                 break;
             }
-            if(current[1]>d[i] && hasDeadline)
+            if(hasDeadline && current[1]>d[i])
             {
-                w[i] = -1;
+                w[i]=current[1];
+                valid[i]=false;
                 break;
             }
-            if(current[1]>t[i] && !hasDeadline){
-                w[i] = -1;
+            if(!hasDeadline && current[1]>t[i])
+            {
+                w[i]=current[1];
+                valid[i]=false;
                 break;
             }
             current[0]=current[1];
         }
+        cout<<endl;
     }
     printer(w);
+    printer(valid);
     return 0;
 }

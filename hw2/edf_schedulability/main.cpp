@@ -33,9 +33,9 @@ long long lcm(int a, int b)
 
 int main()
 {
-    vector<int> c = {20, 10, 5};
-    vector<int> t = {50, 40, 20};
-    vector<int> d = {40, 30, 15};
+    vector<int> c = {10, 10, 12};
+    vector<int> t = {40, 30, 52};
+    vector<int> d = {12, 25, 52};
     set<int> l;
     int h = t[0];
     for(int i=1;i<t.size();i++){
